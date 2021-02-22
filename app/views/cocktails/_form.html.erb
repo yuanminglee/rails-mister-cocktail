@@ -5,6 +5,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <%= f.input :name %>
+  <%= f.input :image_url %>
   <%= f.button :submit, class: "btn btn-primary" %>
   <%= link_to "Back", :back, class: "btn btn-warning" %>
 <% end %>
