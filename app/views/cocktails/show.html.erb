@@ -1,0 +1,26 @@
+<h1>Cocktails#show</h1>
+<p>Find me in app/views/cocktails/show.html.erb</p>
+
+<h2><%= @cocktail.name %></h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Ingredient</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cocktail.doses.each do |dose| %>
+      <tr>
+        <td><%= dose.ingredient.name %></td>
+        <td><%= dose.description %></td>
+        <td><%= link_to 'Delete ingredient', dose_path(dose), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail), class: 'btn btn-primary' %>
