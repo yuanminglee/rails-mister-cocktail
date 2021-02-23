@@ -1,8 +1,16 @@
-<h1>Cocktails#index</h1>
-<p>Find me in app/views/cocktails/index.html.erb</p>
-
-<div class="container-fluid pl-0">
-  <div class="cards">
-    <%= render @cocktails %>
+<div class="jumbotron">
+  <h1 class="display-5">Search for a cocktail</h1>
+  <div class="search-form-control form-group">
+    <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
+      <%= f.input :name, placeholder: @query, label: false, class: 'form-control string required' %>
+      <button name="button" type="submit" class="btn btn-flat">
+        <i class="fas fa-search"></i> Search
+      </button>
+    <% end %>
   </div>
+</div>
+
+<h1>All Cocktails</h1>
+<div class="cards">
+  <%= render @cocktails %>
 </div>

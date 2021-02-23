@@ -4,4 +4,10 @@ class Cocktail < ApplicationRecord
 
   validates_presence_of :name
   validates_uniqueness_of :name
+
+  def self.search_by_name(query)
+    return all unless query
+
+    where("name ILIKE '%#{query}%'")
+  end
 end

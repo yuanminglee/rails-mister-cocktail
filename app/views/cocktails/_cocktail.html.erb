@@ -1,9 +1,7 @@
-<div class="card flex-fill">
-  <img class="card-img-top" src="<%= cocktail.image_url %>" alt="Card image cap">
-  <div class="card-body bg-light">
-    <h5 class="card-title"><%= cocktail.name %></h5>
-  </div>
-  <div class="card-footer">
-    <%= link_to "More info", cocktail_path(cocktail), class: "card-link" %>
-  </div>
+<div>
+  <%= link_to cocktail_path(cocktail), class: "card-link" do %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cocktail.image_url %>')">
+      <h3><%= cocktail.name %></h3>
+    </div>
+  <% end %>
 </div>
