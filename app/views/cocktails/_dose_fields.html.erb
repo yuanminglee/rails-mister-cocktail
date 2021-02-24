@@ -2,12 +2,12 @@
   <div class="form-group">
     <div class="form-row">
       <div class="col">
-        <%= form.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Add an ingredient" %>
+        <%= form.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Add an ingredient", input_html: { class: 'form-control select2' } %>
       </div>
       <div class="col">
         <%= form.input :description %>
       </div>
-      <small><%= link_to "Remove", "#" , data: { action: "click->nested-form#remove_association"} %></small>
+      <small><%= link_to "Remove", "#", data: { action: "nested-form#remove_association" } %></small>
     </div>
   </div>
 
