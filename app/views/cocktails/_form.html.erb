@@ -4,8 +4,28 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%= f.input :name %>
-  <%= f.input :image_url %>
+  <div class="form-group">
+    <%= f.input :name %>
+    <%= f.input :image_url %>
+  </div>
+
+  <h4>Doses</h4>
+  <div data-controller="nested-form">
+    <template data-nested-form-target="template">
+      <%= f.simple_fields_for :doses, Dose.new, child_index: 'NEW_RECORD' do |dose| %>
+        <%= render 'dose_fields', form: dose %>
+      <% end %>
+    </template>
+
+    <%= f.simple_fields_for :doses do |dose| %>
+      <%= render 'dose_fields', form: dose %>
+    <% end %>
+
+    <div class="mb-3" data-nested-form-target="links">
+      <%= link_to "Add dose", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association"} %>
+    </div>
+  </div>
+
   <%= f.button :submit, class: "btn btn-primary" %>
   <%= link_to "Back", :back, class: "btn btn-warning" %>
 <% end %>
