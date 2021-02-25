@@ -24,3 +24,20 @@
     <% end %>
   </tbody>
 </table>
+
+<h4>Reviews</h4>
+<ul>
+  <% @reviews.each do |review| %>
+    <li class="list-unstyled">
+      <small><i class="fas fa-star"></i></small>
+      <%= "#{review.rating} — #{review.content}" %>
+      <%= link_to edit_cocktail_review_path(@cocktail, review), class: "align-top text-reset" do %>
+        <small><i class="fas fa-edit"></i></small>
+      <% end %>
+      <%= link_to review_path(review), method: 'delete', data: { confirm: "Are you sure?" }, class: "align-top text-reset" do %>
+        <small><i class="fas fa-trash-alt"></i></small>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<%= render './reviews/form', cocktail: @cocktail, review: @review %>
