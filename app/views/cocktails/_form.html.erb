@@ -7,7 +7,7 @@
     <%= f.input :image_url %>
   </div>
 
-  <h4>Doses</h4>
+  <h4>Ingredients</h4>
   <div data-controller="nested-form">
     <template data-nested-form-target="template">
       <%= f.simple_fields_for :doses, Dose.new, child_index: 'NEW_RECORD' do |dose| %>

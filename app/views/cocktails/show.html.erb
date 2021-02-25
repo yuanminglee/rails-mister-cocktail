@@ -2,6 +2,9 @@
 <%= link_to edit_cocktail_path, class: "align-top text-reset" do %>
   <i class="fas fa-edit"></i>
 <% end %>
+<%= link_to cocktail_path, method: 'delete', data: { confirm: "Are you sure?" }, class: "align-top text-reset" do %>
+  <i class="fas fa-trash-alt"></i>
+<% end %>
 
 <table class="table">
   <thead class="thead-dark">

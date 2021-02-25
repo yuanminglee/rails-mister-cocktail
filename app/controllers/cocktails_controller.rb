@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-  before_action :set_cocktail, only: %i[show edit update]
+  before_action :set_cocktail, only: %i[show edit update destroy]
 
   def index
     @query = params.dig(:search, :name)
@@ -35,6 +35,12 @@ class CocktailsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @cocktail.destroy
+
+    redirect_to root_path
   end
 
   private

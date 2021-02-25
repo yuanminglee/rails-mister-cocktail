@@ -2,12 +2,13 @@
   <h1 class="display-5">Search for a cocktail</h1>
   <div class="search-form-control form-group">
     <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
-      <%= f.input :name, placeholder: @query, label: false, class: 'form-control string required' %>
+      <%= f.input :name, placeholder: @query, label: false, input_html: { class: "form-control string required", id: "search-typed-text" } %>
       <button name="button" type="submit" class="btn btn-flat">
         <i class="fas fa-search"></i> Search
       </button>
     <% end %>
   </div>
+  <!-- <p id="search-typed-text"></p> -->
 </div>
 
 <h1>All Cocktails</h1>
