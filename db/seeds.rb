@@ -18,12 +18,9 @@ end
     image_url: cocktail['strDrinkThumb']
   )
 
-  if new_cocktail.save
-    puts "Success! Added #{new_cocktail.name}."
-  else
-    puts 'Error'
-  end
+  next unless new_cocktail.save
 
+  puts "Success! Added #{new_cocktail.name}."
   puts 'Adding ingredients...'
 
   ingredients = cocktail.select { |k, v| k.include?('strIngredient') && v.present? }
