@@ -1,5 +1,9 @@
 <div class="card-product">
-  <%= (cl_image_tag @cocktail.photo.key) || (image_tag @cocktail.image_url) %>
+  <% if @cocktail.photo.present? %>
+    <%= cl_image_tag @cocktail.photo.key %>
+  <% else %>
+    <%= image_tag @cocktail.image_url %>
+  <% end %>
   <div class="card-product-infos flex-fill">
     <div class="row mb-2">
       <div class="col">
