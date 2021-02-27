@@ -4,6 +4,7 @@
 
   <div class="form-group">
     <%= f.input :name %>
+    <%= f.input :instructions %>
     <%= f.input :image_url %>
   </div>
 
@@ -20,10 +21,12 @@
     <% end %>
 
     <div class="mb-3" data-nested-form-target="links">
-      <%= link_to "Add dose", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association"} %>
+      <%= link_to "#", data: { action: "click->nested-form#add_association"} do %>
+        <i class="fas fa-plus text-dark"></i>
+      <% end %>
     </div>
   </div>
 
-  <%= f.button :submit, class: "btn btn-primary" %>
-  <%= link_to "Back", :back, class: "btn btn-warning" %>
+  <%= f.button :submit, class: "btn btn-outline-dark mt-3 w-25" %>
+  <%= link_to "Back", :back, class: "btn btn-outline-dark mt-3 w-25" %>
 <% end %>

@@ -1,13 +1,15 @@
 <%= content_tag :div, class: "nested-fields", data: { new_record: form.object.new_record? } do %>
-  <div class="form-group">
-    <div class="form-row">
+  <div class="form-group mb-0">
+    <div class="form-row align-items-center">
       <div class="col">
-        <%= form.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Add an ingredient", input_html: { class: 'form-control select2' } %>
+        <%= form.association :ingredient, collection: Ingredient.all.order(:name), prompt: "Add an ingredient", input_html: { class: 'form-control select2' }, label: false %>
       </div>
       <div class="col">
-        <%= form.input :description %>
+        <%= form.input :description, placeholder: "Add a description", label: false %>
       </div>
-      <small><%= link_to "Remove", "#", data: { action: "nested-form#remove_association" } %></small>
+      <%= link_to "#", data: { action: "nested-form#remove_association" } do %>
+        <i class="fas fa-trash text-dark"></i>
+      <% end %>
     </div>
   </div>
 

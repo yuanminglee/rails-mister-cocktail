@@ -1,43 +1,63 @@
-<h1 class="d-inline-block"><%= @cocktail.name %></h1>
-<%= link_to edit_cocktail_path, class: "align-top text-reset" do %>
-  <i class="fas fa-edit"></i>
-<% end %>
-<%= link_to cocktail_path, method: 'delete', data: { confirm: "Are you sure?" }, class: "align-top text-reset" do %>
-  <i class="fas fa-trash-alt"></i>
-<% end %>
+<div class="card-product">
+  <%= image_tag @cocktail.image_url %>
+  <div class="card-product-infos">
+    <div class="row mb-2">
+      <div class="col">
+        <h1><%= @cocktail.name %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 pr-5">
+        <h2>Instructions</h2>
+        <p><%= @cocktail.instructions %></p>
+        <%= link_to "Edit", edit_cocktail_path, class: "btn btn-outline-dark mt-3 w-25" %>
+        <%= link_to "Destroy", cocktail_path, method: 'delete', data: { confirm: "Are you sure?" }, class: "btn btn-outline-dark mt-3 w-25" %>
+      </div>
+      <div class="col-4">
+        <h2>Ingredients</h2>
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <% @cocktail.doses.each do |dose| %>
+              <tr>
+                <td><%= dose.ingredient.name %></td>
+                <td><%= dose.description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>Ingredient</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cocktail.doses.each do |dose| %>
-      <tr>
-        <td><%= dose.ingredient.name %></td>
-        <td><%= dose.description %></td>
-        <td><%= link_to 'Delete ingredient', dose_path(dose), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h4>Reviews</h4>
-<ul>
-  <% @reviews.each do |review| %>
-    <li class="list-unstyled">
-      <small><i class="fas fa-star"></i></small>
-      <%= "#{review.rating} — #{review.content}" %>
-      <%= link_to edit_cocktail_review_path(@cocktail, review), class: "align-top text-reset" do %>
-        <small><i class="fas fa-edit"></i></small>
-      <% end %>
-      <%= link_to review_path(review), method: 'delete', data: { confirm: "Are you sure?" }, class: "align-top text-reset" do %>
-        <small><i class="fas fa-trash-alt"></i></small>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-<%= render './reviews/form', cocktail: @cocktail, review: @review %>
+<div class="card mt-3">
+  <div class="row mb-2">
+    <div class="col">
+      <h2>Reviews</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-sm table-borderless">
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td style="max-width: 18px;">
+                <% review.rating.times do %>
+                  <i class="fas fa-star" style="margin: -2px;"></i>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                  <i class="far fa-star" style="margin: -2px;"></i>
+                <% end %>
+              </td>
+              <td><%= review.content %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <%= render './reviews/form', cocktail: @cocktail, review: @review %>
+    </div>
+  </div>
+</div>
