@@ -13,4 +13,10 @@ class Cocktail < ApplicationRecord
 
     where("name ILIKE '%#{query}%'")
   end
+
+  def add_or_create_dose(ingredient_name, dose_description)
+    ingredient = Ingredient.find_by_name(ingredient_name) || Ingredient.create!(name: ingredient_name)
+
+    self.doses.create!(description: dose_description, ingredient: ingredient)
+  end
 end
